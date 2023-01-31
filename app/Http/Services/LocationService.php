@@ -38,9 +38,9 @@ class LocationService
      */
     public function nearby($city): array
     {
-        $request = $this->client->get('search?near=' . $city . ', jp')->getBody();
+        $response = $this->client->get('search?near=' . $city . ', jp')->getBody();
 
-        return json_decode($request,true);
+        return json_decode($response,true);
     }
 
     /**
@@ -54,7 +54,7 @@ class LocationService
 
         return [
             'lat'   => $city['context']['geo_bounds']['circle']['center']['latitude'],
-            'long'  => $city['context']['geo_bounds']['circle']['center']['longitude'],
+            'lon'  => $city['context']['geo_bounds']['circle']['center']['longitude'],
         ];
     }
 }

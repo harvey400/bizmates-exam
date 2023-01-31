@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\LocationService;
-use App\Http\Services\ResponseTrait;
+use App\Http\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 
 class LocationController extends Controller

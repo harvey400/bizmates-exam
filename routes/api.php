@@ -12,9 +12,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'location'], function(){
     Route::get('',              [LocationController::class,'index']);
     Route::get('nearby/{city}', [LocationController::class,'nearby']);
-    Route::get('ll/{city}',     [LocationController::class,'ll']);
+    Route::get('position/{city}',     [LocationController::class,'position']);
 });
 
 Route::group(['prefix'=>'weather'], function(){
-    Route::get('', [WeatherController::class,'index']);
+    Route::get('{city}', [WeatherController::class,'show']);
+    Route::get('forecast/{city}', [WeatherController::class,'forecast']);
 });

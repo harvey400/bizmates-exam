@@ -1,3 +1,13 @@
+<script>
+import Weather from './Weather.vue';
+
+export default{
+    components:{
+        Weather
+    }
+}
+</script>
+
 <template>
-    Setup Vite + Laravel
+    <Weather/>
 </template>

@@ -17,12 +17,26 @@ class WeatherController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param $city
+     * @return JsonResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function index(Request $request): JsonResponse
+    public function show(Request $request): JsonResponse
     {
-        $response = $this->weatherService->get($request['lat'], $request['lon']);
+        $response = $this->weatherService->get($request['city']);
+
+        return $this->responseOne($response);
+    }
+
+    /**
+     * @param Request $request
+     * @param $city
+     * @return JsonResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function forecast(Request $request): JsonResponse
+    {
+        $response = $this->weatherService->forecast($request['city']);
 
         return $this->responseOne($response);
     }

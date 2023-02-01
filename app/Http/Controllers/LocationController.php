@@ -41,9 +41,9 @@ class LocationController extends Controller
      * @return JsonResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function ll($city): JsonResponse
+    public function position($city): JsonResponse
     {
-        $response = $this->locationService->ll($city);
+        $response = $this->locationService->position($city);
 
         return $this->responseOne($response);
     }

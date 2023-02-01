@@ -48,7 +48,7 @@ class LocationService
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function ll($city): array
+    public function position($city): array
     {
         $city = $this->nearby($city);
 

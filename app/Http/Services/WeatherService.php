@@ -9,7 +9,7 @@ class WeatherService
 
     private Client $client;
 
-    public function __construct()
+    public function __construct(private LocationService $locationService)
     {
         $this->client = new Client([
             'base_uri' => env('WEATHER_URL'),
@@ -26,14 +26,26 @@ class WeatherService
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get($lat, $lon)
+    public function get($city)
     {
-        $params = [
-            'lat'   => $lat,
-            'lon'   => $lon
-        ];
+        $pos = $this->locationService->position($city);
 
-        $response = $this->clientGetRequest('weather', $params);
+        $response = $this->clientGetRequest('weather', $pos);
+
+        return json_decode($response,true);
+    }
+
+
+    /**
+     * @param $city
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function forecast($city)
+    {
+        $pos = $this->locationService->position($city);
+
+        $response = $this->clientGetRequest('forecast', $pos);
 
         return json_decode($response,true);
     }
